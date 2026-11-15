@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalyst Care - Intelligent Healthcare Platform</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <style>
+    /* Standalone banner badge */
+    .website-mode-pill {
+      background: linear-gradient(135deg, #0d9488, #15803d);
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <!-- ==================== SIDEBAR NAVIGATION ==================== -->
+  <aside class="sidebar">
+    <div class="brand-section">
+      <div class="brand-logo">🌿</div>
+      <div class="brand-info">
+        <h1>Catalyst Care</h1>
+        <p>Intelligent Healthcare</p>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a class="nav-link active" data-view="home">
+          <span class="icon">🏠</span>
+          <span>Home Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="elderly">
+          <span class="icon">👵</span>
+          <span>Elderly Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="caretaker">
+          <span class="icon">👩‍⚕️</span>
+          <span>Caretaker Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="calendar">
+          <span class="icon">📅</span>
+          <span>Smart Calendar</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="voice">
+          <span class="icon">🎙️</span>
+          <span>AI Voice Assistant</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="medication">
+          <span class="icon">💊</span>
+          <span>Medication Manager</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="documents">
+          <span class="icon">📄</span>
+          <span>Document Preparation</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="travel">
+          <span class="icon">🚗</span>
+          <span>Travel Intelligence</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="doctors">
+          <span class="icon">🩺</span>
+          <span>Doctor Booking</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="coordination">
+          <span class="icon">👨‍👩‍👧</span>
+          <span>Family Coordination</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="emergency">
+          <span class="icon">🚨</span>
+          <span>Emergency SOS</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="timeline">
+          <span class="icon">📜</span>
+          <span>Health Timeline</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="analytics">
+          <span class="icon">📊</span>
+          <span>Health Analytics</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-view="settings">
+          <span class="icon">⚙️</span>
+          <span>Settings & Access</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <button class="sos-trigger-btn" onclick="confirmAndTriggerSOS()">
+        <span>🚨</span>
+        <span>EMERGENCY SOS</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="main-content">
+    
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="mobile-nav-toggle" id="mobile-menu-btn">☰</button>
+        <div class="page-title">
+          <h2 id="current-page-title">Home Dashboard</h2>
+          <p>
+            Care Profile: <strong>Smt. Lakshmi Devi</strong> (Age 72, Bangalore)
+            &nbsp;•&nbsp; <span class="website-mode-pill">● Live Interactive Website</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Demo Role Selector Pill -->
+        <div class="role-selector-pill">
+          <label>Demo Role:</label>
+          <select id="demo-role-select">
+            <option value="elderly">👵 Elderly User</option>
+            <option value="caretaker">👩‍⚕️ Caretaker (Priya)</option>
+            <option value="doctor_admin">🩺 Doctor (Dr. Ramesh)</option>
+          </select>
+        </div>
+
+        <!-- Accessibility Quick Toggles -->
+        <button class="access-quick-btn" id="btn-contrast-toggle" onclick="toggleHighContrast()" title="Toggle High Contrast Mode">
+          <span>👁️</span> Contrast
+        </button>
+        <button class="access-quick-btn" id="btn-font-toggle" onclick="toggleLargeFont()" title="Toggle Large Font Mode">
+          <span>🔍</span> Large Text
+        </button>
+      </div>
+    </header>
+
+    <!-- VIEWS CONTAINER -->
+    <div class="views-container">
+
+      <!-- ==================== 1. HOME DASHBOARD ==================== -->
+      <section class="view-section active-view" id="view-home">
+        <!-- Daily Voice Briefing Hero Card -->
+        <div class="card" style="background: linear-gradient(135deg, var(--teal-light), var(--green-light)); border: 1px solid var(--teal-border); padding: 28px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+            <div style="max-width: 700px;">
+              <span class="badge badge-teal" style="font-size:13px; margin-bottom:10px;">🎙️ Daily Morning Audio Briefing</span>
+              <h3 style="font-size:24px; font-weight:800; color:var(--teal-dark); margin-bottom:8px;">Good Morning, Lakshmi ji!</h3>
+              <p id="home-daily-briefing-text" style="font-size:16px; color:#334155; line-height:1.6;">
+                Good morning! You have a Cardiologist appointment with Dr. Ramesh Sharma at 10:00 AM today at Apollo Hospitals. Suggested departure time is 09:05 AM. Your caretaker Priya Sharma has been notified and will accompany you. Please remember to drink warm water and feel free to ask me any question!
+              </p>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <button class="btn btn-primary" onclick="speakText(document.getElementById('home-daily-briefing-text').textContent)">
+                🔊 Listen Briefing
+              </button>
+              <button class="btn btn-secondary" onclick="navigateToView('voice')">
+                🎙️ Ask Assistant
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Metrics Cards -->
+        <div class="grid-4" style="margin-bottom: 24px;">
+          <div class="stat-card">
+            <div class="stat-icon teal">🩺</div>
+            <div>
+              <div class="stat-val" id="stat-total-appts">4</div>
+              <div class="stat-lbl">Appointments</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon amber">💊</div>
+            <div>
+              <div class="stat-val" id="stat-pending-meds">3</div>
+              <div class="stat-lbl">Meds Due Today</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">📈</div>
+            <div>
+              <div class="stat-val" id="stat-health-score">92.5%</div>
+              <div class="stat-lbl">Health Index</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red">🔔</div>
+            <div>
+              <div class="stat-val" id="stat-unread-alerts">2</div>
+              <div class="stat-lbl">Family Alerts</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Access Portals -->
+        <div class="grid-3">
+          <div class="elderly-big-action-card" onclick="navigateToView('elderly')">
+            <div class="big-icon">👵</div>
+            <h3>Elderly Mode</h3>
+            <p>Extra-large buttons, voice assistance, and 1-tap medicine confirmations.</p>
+          </div>
+          <div class="elderly-big-action-card" onclick="navigateToView('caretaker')">
+            <div class="big-icon">👩‍⚕️</div>
+            <h3>Caretaker Portal</h3>
+            <p>Weekly reports, task delegation, stock refill monitoring, and alerts.</p>
+          </div>
+          <div class="elderly-big-action-card" onclick="navigateToView('analytics')">
+            <div class="big-icon">📊</div>
+            <h3>Health Analytics</h3>
+            <p>Overall recovery curves and vitals trends plotted from submitted reports.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 2. ELDERLY USER DASHBOARD ==================== -->
+      <section class="view-section" id="view-elderly">
+        <div class="elderly-hero-banner">
+          <div>
+            <h2>Hello Lakshmi ji! 🙏</h2>
+            <p id="elderly-briefing-text">Everything is well today. Your daughter Priya is available on one touch.</p>
+          </div>
+          <button class="btn btn-secondary btn-elderly-large" onclick="speakText(document.getElementById('elderly-briefing-text').textContent)">
+            🔊 Hear Update
+          </button>
+        </div>
+
+        <div class="grid-2">
+          <!-- Voice Interaction Card -->
+          <div class="card" style="text-align:center; padding:32px;">
+            <h3 style="font-size:22px; font-weight:800; color:var(--teal-dark); margin-bottom:12px;">Talk with Your Voice Assistant</h3>
+            <p style="font-size:16px; color:#64748b; margin-bottom:24px;">Tap the microphone and ask in English, Telugu, or Hindi.</p>
+            <div class="voice-sphere-container">
+              <button class="voice-mic-btn" id="voice-mic-main-btn" onclick="toggleVoiceListening()">
+                🎙️
+              </button>
+              <p id="voice-mic-status-label" style="margin-top:16px; font-weight:700; color:var(--teal-dark); font-size:18px;">
+                Tap to Speak
+              </p>
+            </div>
+            <button class="btn btn-secondary" onclick="navigateToView('voice')">
+              Open Full Voice Interface →
+            </button>
+          </div>
+
+          <!-- Emergency SOS Card -->
+          <div class="card" style="border: 2px solid #ef4444; background:#fff5f5; text-align:center; padding:32px;">
+            <div style="font-size:54px; margin-bottom:12px;">🚨</div>
+            <h3 style="font-size:24px; font-weight:800; color:#dc2626; margin-bottom:10px;">Emergency Help Needed?</h3>
+            <p style="font-size:16px; color:#7f1d1d; margin-bottom:24px;">
+              Tap this button to instantly notify your daughter Priya, son Rahul, and Apollo Ambulance line.
+            </p>
+            <button class="btn btn-danger btn-elderly-large" onclick="confirmAndTriggerSOS()" style="width:100%;">
+              🚨 PRESS FOR EMERGENCY HELP
+            </button>
+          </div>
+        </div>
+
+        <!-- Today's Medicine Reminders (Big 1-Tap Acknowledge) -->
+        <div class="card" style="margin-top:24px;">
+          <div class="card-header">
+            <h3 class="card-title">💊 Medicines for Today</h3>
+            <span class="badge badge-teal">Simple 1-Tap Confirmation</span>
+          </div>
+          <div id="elderly-meds-cards-list">
+            Loading medicines...
+          </div>
+        </div>
+
+        <!-- Today's Appointments -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🩺 Today's Doctor Visits</h3>
+          </div>
+          <div id="elderly-today-appts-list">
+            Loading appointments...
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 3. CARETAKER DASHBOARD ==================== -->
+      <section class="view-section" id="view-caretaker">
+        <div class="card" style="background: linear-gradient(135deg, #f0fdf4, #f0fdfa); border-left: 6px solid var(--green-royal);">
+          <h3 style="font-size:20px; font-weight:800; color:var(--green-royal); margin-bottom:8px;">Weekly Caretaker Briefing</h3>
+          <p id="caretaker-weekly-summary-text" style="font-size:15px; color:#334155; line-height:1.6;">
+            You have 3 appointments scheduled in the next 7 days for mother. All accompanying slots are assigned. Atorvastatin 10mg is nearing refill threshold (4 tablets remaining).
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <!-- Caregiver Pending Tasks -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">📋 Family Care Tasks</h3>
+              <button class="btn btn-secondary" onclick="openAddTaskModal()">+ Add Task</button>
+            </div>
+            <div id="caretaker-pending-tasks-list">
+              Loading tasks...
+            </div>
+          </div>
+
+          <!-- Refill Alerts -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">💊 Prescription Refill Alerts</h3>
+              <button class="btn btn-secondary" onclick="navigateToView('medication')">Manage All</button>
+            </div>
+            <div id="caretaker-refills-list">
+              Loading refills...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 4. SMART APPOINTMENT CALENDAR ==================== -->
+      <section class="view-section" id="view-calendar">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📅 Master Appointment Schedule</h3>
+            <button class="btn btn-primary" onclick="openBookingModal(1, 'Dr. Ramesh Sharma', 'Cardiologist')">
+              + Schedule New Appointment
+            </button>
+          </div>
+          
+          <div style="overflow-x:auto;">
+            <table style="width:100%; border-collapse:collapse; text-align:left; font-size:14px;">
+              <thead>
+                <tr style="border-bottom:2px solid #e2e8f0; color:#64748b; font-weight:700;">
+                  <th style="padding:12px;">Date & Time</th>
+                  <th style="padding:12px;">Doctor & Specialty</th>
+                  <th style="padding:12px;">Hospital Location</th>
+                  <th style="padding:12px;">Consultation Purpose</th>
+                  <th style="padding:12px;">Status</th>
+                  <th style="padding:12px;">Accompanying Caretaker</th>
+                  <th style="padding:12px;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="calendar-appointments-table-body">
+                <tr><td colspan="7" style="text-align:center; padding:20px;">Loading schedule...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 5. AI VOICE ASSISTANT ==================== -->
+      <section class="view-section" id="view-voice">
+        <div class="card" style="text-align:center; padding:36px; max-width:850px; margin:0 auto 24px auto;">
+          <span class="badge badge-teal" style="font-size:13px; margin-bottom:12px;">Voice-First Assistant</span>
+          <h3 style="font-size:26px; font-weight:800; color:var(--teal-dark); margin-bottom:8px;">
+            Speak with Catalyst Health Assistant
+          </h3>
+          <p style="font-size:15px; color:#64748b; max-width:600px; margin:0 auto 20px auto;">
+            Designed for elderly users. Supports <strong>English</strong>, <strong>తెలుగు (Telugu)</strong>, and <strong>हिन्दी (Hindi)</strong>.
+          </p>
+
+          <!-- Language Selector -->
+          <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:28px; background:var(--slate-light); padding:8px 16px; border-radius:var(--radius-full); border:1px solid #e2e8f0;">
+            <label style="font-size:13px; font-weight:700;">Select Language:</label>
+            <select id="voice-language-select" style="border:none; background:transparent; font-weight:700; color:var(--teal-dark); cursor:pointer;">
+              <option value="en-IN">English (India)</option>
+              <option value="te-IN">తెలుగు (Telugu)</option>
+              <option value="hi-IN">हिन्दी (Hindi)</option>
+            </select>
+          </div>
+
+          <!-- Pulsing Mic Button -->
+          <div class="voice-sphere-container">
+            <button class="voice-mic-btn" onclick="toggleVoiceListening()">
+              🎙️
+            </button>
+            <p style="font-weight:700; color:var(--teal-dark); margin-top:14px; font-size:18px;">
+              Tap Microphone to Speak
+            </p>
+          </div>
+
+          <!-- Voice Response Container -->
+          <div id="voice-response-box" style="display:none; background:var(--teal-light); border:1px solid var(--teal-border); border-radius:var(--radius-md); padding:20px; margin-top:24px; text-align:left;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="badge badge-teal">Assistant Response</span>
+              <button class="btn btn-secondary" style="padding:4px 8px; font-size:12px;" onclick="speakText(document.getElementById('voice-response-text').textContent)">
+                🔊 Repeat Audio
+              </button>
+            </div>
+            <p id="voice-response-text" style="font-size:18px; font-weight:700; color:var(--slate-dark);"></p>
+            <div id="voice-confirm-action-btn" style="display:none; margin-top:14px;">
+              <button class="btn btn-danger">Confirm Action</button>
+            </div>
+          </div>
+
+          <!-- Text Fallback Input Box -->
+          <div style="margin-top:32px; display:flex; gap:10px;">
+            <input type="text" id="voice-query-input" class="form-control" placeholder="Or type your question here (e.g., 'What appointments do I have today?')..." style="font-size:15px;">
+            <button class="btn btn-primary" onclick="handleVoiceQuery(document.getElementById('voice-query-input').value)">
+              Send
+            </button>
+          </div>
+
+          <!-- Sample Quick Questions -->
+          <div style="margin-top:24px; text-align:left;">
+            <p style="font-size:13px; font-weight:700; color:#64748b; margin-bottom:8px;">Try asking:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <button class="btn btn-secondary" style="font-size:12px;" onclick="handleVoiceQuery('What appointments do I have today?')">What appointments do I have today?</button>
+              <button class="btn btn-secondary" style="font-size:12px;" onclick="handleVoiceQuery('What medicines are scheduled today?')">What medicines are scheduled today?</button>
+              <button class="btn btn-secondary" style="font-size:12px;" onclick="handleVoiceQuery('When should I leave?')">When should I leave?</button>
+              <button class="btn btn-secondary" style="font-size:12px;" onclick="handleVoiceQuery('What documents should I carry?')">What documents should I carry?</button>
+              <button class="btn btn-secondary" style="font-size:12px;" onclick="handleVoiceQuery('ఈరోజు నాకు ఏ అపాయింట్‌మెంట్లు ఉన్నాయి?')">ఈరోజు అపాయింట్‌మెంట్లు (Telugu)</button>
+              <button class="btn btn-secondary" style="font-size:12px;" onclick="handleVoiceQuery('आज मेरी कौन सी दवाइयां हैं?')">आज की दवाइयां (Hindi)</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 6. MEDICATION MANAGER ==================== -->
+      <section class="view-section" id="view-medication">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">💊 Active Prescribed Medications</h3>
+            <button class="btn btn-primary" onclick="openAddMedicationModal()">+ Add Medication</button>
+          </div>
+          <div class="grid-3" id="medications-catalog-grid">
+            Loading medications...
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 7. DOCUMENT PREPARATION ==================== -->
+      <section class="view-section" id="view-documents">
+        <div class="card" style="background:var(--teal-light); border:1px solid var(--teal-border); margin-bottom:24px;">
+          <h3 style="font-size:18px; font-weight:800; color:var(--teal-dark); margin-bottom:6px;">Smart 2-Day Pre-Appointment Assistant</h3>
+          <p style="font-size:14px; color:#334155;">
+            Detects upcoming specialist consultations, automatically generates preparation checklists, checks uploaded documents in health vault, and alerts family members if tests are missing.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📄 Medical Document Vault</h3>
+            <button class="btn btn-primary" onclick="openUploadDocModal()">+ Upload New Document</button>
+          </div>
+          <div id="documents-list-container">
+            Loading documents...
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 8. TRAVEL INTELLIGENCE ==================== -->
+      <section class="view-section" id="view-travel">
+        <div class="card" style="background:#fff; border-left: 6px solid var(--teal-primary); margin-bottom:24px;">
+          <h3 style="font-size:18px; font-weight:800; color:var(--teal-dark);">Smart Travel & Departure Intelligence</h3>
+          <p style="font-size:14px; color:#475569; margin-top:4px;">
+            Simulates Bangalore clinic routes, factors a 25-minute senior transit buffer, and calculates optimal departure times to ensure stress-free arrivals.
+          </p>
+        </div>
+        <div id="travel-trips-container">
+          Loading travel calculations...
+        </div>
+      </section>
+
+      <!-- ==================== 9. DOCTOR AVAILABILITY & BOOKING ==================== -->
+      <section class="view-section" id="view-doctors">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">🩺 Verified Doctor Profiles & Clinics</h3>
+          </div>
+          <div class="grid-3" id="doctors-list-grid">
+            Loading doctors...
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 10. FAMILY & CARETAKER COORDINATION ==================== -->
+      <section class="view-section" id="view-coordination">
+        <div class="grid-2">
+          <!-- Authorized Caretakers -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">👥 Authorized Caretakers</h3>
+            </div>
+            <div id="coordination-caretakers-list">
+              Loading caretakers...
+            </div>
+          </div>
+
+          <!-- Family Care Journal -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">📖 Shared Care Journal</h3>
+              <button class="btn btn-secondary" onclick="openAddJournalModal()">+ Write Entry</button>
+            </div>
+            <div id="coordination-journal-list">
+              Loading journal...
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 11. EMERGENCY SOS ==================== -->
+      <section class="view-section" id="view-emergency">
+        <div class="card" style="border:3px solid #ef4444; background:#fffaf0; padding:32px; text-align:center;">
+          <span class="badge badge-red" style="font-size:14px; margin-bottom:12px;">🚨 EMERGENCY CRISIS RESPONSE</span>
+          <h2 style="font-size:32px; font-weight:900; color:#dc2626; margin-bottom:12px;">Emergency SOS Hub</h2>
+          <p style="font-size:18px; color:#475569; max-width:650px; margin:0 auto 28px auto;">
+            Activates immediate notification broadcast with simulated GPS coordinates to all registered family members and hospital ambulances.
+          </p>
+          <button class="btn btn-danger btn-elderly-large" onclick="confirmAndTriggerSOS()" style="padding:24px 48px; font-size:24px;">
+            🚨 TRIGGER EMERGENCY SOS NOW
+          </button>
+        </div>
+
+        <div class="card" style="margin-top:24px;">
+          <div class="card-header">
+            <h3 class="card-title">📍 Registered Emergency Contacts & Hotlines</h3>
+          </div>
+          <div class="grid-2">
+            <div style="padding:16px; border:1px solid #e2e8f0; border-radius:8px;">
+              <h4>Priya Sharma (Daughter - Primary)</h4>
+              <p style="color:#64748b;">Phone: +91 98450 44556</p>
+              <button class="btn btn-secondary" style="margin-top:8px;" onclick="simulateCall('Priya Sharma', '+91 98450 44556')">📞 Call</button>
+            </div>
+            <div style="padding:16px; border:1px solid #e2e8f0; border-radius:8px;">
+              <h4>Rahul Sharma (Son - Secondary)</h4>
+              <p style="color:#64748b;">Phone: +91 98450 77889</p>
+              <button class="btn btn-secondary" style="margin-top:8px;" onclick="simulateCall('Rahul Sharma', '+91 98450 77889')">📞 Call</button>
+            </div>
+            <div style="padding:16px; border:1px solid #e2e8f0; border-radius:8px;">
+              <h4>Dr. Ramesh Sharma (Cardiologist)</h4>
+              <p style="color:#64748b;">Phone: +91 98450 99001</p>
+              <button class="btn btn-secondary" style="margin-top:8px;" onclick="simulateCall('Dr. Ramesh Sharma', '+91 98450 99001')">📞 Call</button>
+            </div>
+            <div style="padding:16px; border:1px solid #e2e8f0; border-radius:8px;">
+              <h4>Apollo Emergency Ambulance Hotline</h4>
+              <p style="color:#64748b;">Direct Line: 1066 (Simulated)</p>
+              <button class="btn btn-secondary" style="margin-top:8px;" onclick="simulateCall('Apollo Emergency', '1066')">📞 Call</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 12. HEALTH TIMELINE ==================== -->
+      <section class="view-section" id="view-timeline">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">📜 Chronological Health Timeline</h3>
+          </div>
+          <div class="timeline" id="timeline-events-container">
+            Loading timeline...
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 13. HEALTH ANALYTICS & OVERALL HEALTH GRAPH ==================== -->
+      <section class="view-section" id="view-analytics">
+        
+        <!-- Graph for Overall Health of Elder Based of Reports Submitted (User Request!) -->
+        <div class="card" style="border: 2px solid var(--teal-primary);">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title" style="color:var(--teal-dark);">📈 Overall Health Score Trend (From Submitted Reports)</h3>
+              <p style="font-size:13px; color:#64748b; margin-top:2px;">
+                Synthesizes blood pressure, glucose, oxygen saturation (SpO2), and lipid normalcy across time.
+              </p>
+            </div>
+            <span class="badge badge-green" style="font-size:14px;">Powered by Clinical Analytics</span>
+          </div>
+
+          <!-- HTML5 Canvas Responsive Graph -->
+          <div class="chart-box">
+            <canvas id="healthScoreCanvas"></canvas>
+          </div>
+
+          <!-- Insights Box -->
+          <div id="health-summary-insights-box" style="margin-top:16px;"></div>
+        </div>
+
+        <!-- Secondary Metrics Grid -->
+        <div class="grid-2">
+          <div class="card">
+            <h4 style="font-size:16px; font-weight:800; margin-bottom:12px;">Medication Adherence Rate</h4>
+            <div style="display:flex; align-items:center; gap:20px;">
+              <span id="analytics-adherence-rate" style="font-size:42px; font-weight:900; color:var(--green-royal);">94.2%</span>
+              <p style="font-size:14px; color:#64748b;">Consistent morning and evening pill intake adherence recorded by patient confirmations.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 style="font-size:16px; font-weight:800; margin-bottom:12px;">Appointment Attendance Rate</h4>
+            <div style="display:flex; align-items:center; gap:20px;">
+              <span id="analytics-attendance-rate" style="font-size:42px; font-weight:900; color:var(--teal-primary);">100%</span>
+              <p style="font-size:14px; color:#64748b;">Zero unattended consultations. Family accompaniment assigned for all upcoming visits.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== 14. SETTINGS & ACCESSIBILITY ==================== -->
+      <section class="view-section" id="view-settings">
+        <div class="card">
+          <h3 class="card-title" style="margin-bottom:18px;">⚙️ Accessibility & System Preferences</h3>
+          
+          <div class="form-group">
+            <label>Accessibility Contrast:</label>
+            <button class="btn btn-secondary" onclick="toggleHighContrast()">Toggle High Contrast Mode</button>
+          </div>
+
+          <div class="form-group">
+            <label>Typography Scale:</label>
+            <button class="btn btn-secondary" onclick="toggleLargeFont()">Toggle Extra Large Font Mode</button>
+          </div>
+
+          <div style="margin-top:28px; padding-top:20px; border-top:1px solid #e2e8f0;">
+            <h4>Hackathon Architecture & Compliance Disclaimers</h4>
+            <p style="font-size:13px; color:#64748b; margin-top:8px; line-height:1.6;">
+              NOTICE: Catalyst Care provides schedule, reminder, and document assistance. It never independently diagnoses, prescribes, or modifies medication dosages. An unacknowledged reminder does not prove a dose was missed. In emergencies, call 112 or local emergency services.
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- ==================== MODALS ==================== -->
+
+<!-- Book Appointment Modal -->
+<div class="modal-overlay" id="book-appointment-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">Schedule Doctor Appointment</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('book-appointment-modal')">✕</button>
+    </div>
+    <form onsubmit="submitAppointmentBooking(event)">
+      <div class="modal-body">
+        <input type="hidden" id="booking-doc-id" value="1">
+        <div style="margin-bottom:14px;">
+          <h4 id="booking-doc-name" style="font-size:18px; font-weight:800; color:var(--teal-dark);">Dr. Ramesh Sharma</h4>
+          <p id="booking-doc-specialty" style="font-size:13px; color:#64748b;">Cardiologist</p>
+        </div>
+        <div class="form-group">
+          <label>Appointment Date:</label>
+          <input type="date" id="booking-date" class="form-control" required value="2026-11-20">
+        </div>
+        <div class="form-group">
+          <label>Preferred Time Slot:</label>
+          <select id="booking-time" class="form-control">
+            <option value="09:30">09:30 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="10:30">10:30 AM</option>
+            <option value="11:30">11:30 AM</option>
+            <option value="15:00">03:00 PM</option>
+            <option value="16:00">04:00 PM</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Purpose of Visit:</label>
+          <input type="text" id="booking-purpose" class="form-control" required value="Quarterly Cardiac Routine & BP Follow-up">
+        </div>
+        <div class="form-group">
+          <label>Accompanying Caretaker:</label>
+          <select id="booking-accompanied" class="form-control">
+            <option value="1">Priya Sharma (Daughter)</option>
+            <option value="2">Rahul Sharma (Son)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('book-appointment-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Emergency SOS Confirmation Modal -->
+<div class="modal-overlay" id="sos-confirm-modal">
+  <div class="modal-box" style="border:3px solid #dc2626;">
+    <div class="modal-header" style="background:#fee2e2;">
+      <h3 class="modal-title" style="color:#b91c1c;">🚨 Confirm Emergency SOS Alert</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('sos-confirm-modal')">✕</button>
+    </div>
+    <div class="modal-body" style="text-align:center; padding:28px;">
+      <p style="font-size:18px; font-weight:700; color:#1e293b; margin-bottom:12px;">
+        Are you sure you want to broadcast an emergency alert?
+      </p>
+      <p style="font-size:14px; color:#64748b; margin-bottom:24px;">
+        This simulated alert will immediately broadcast to Priya, Rahul, Dr. Ramesh Sharma, and Apollo Ambulance hotline.
+      </p>
+      <div style="display:flex; gap:12px; justify-content:center;">
+        <button class="btn btn-secondary btn-elderly-large" onclick="closeModal('sos-confirm-modal')">
+          Cancel (Accidental Press)
+        </button>
+        <button class="btn btn-danger btn-elderly-large" onclick="triggerEmergencySOS()">
+          YES, TRIGGER SOS
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Medication Modal -->
+<div class="modal-overlay" id="add-medication-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">Add Prescribed Medication</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('add-medication-modal')">✕</button>
+    </div>
+    <form onsubmit="submitAddMedication(event)">
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Medication Name:</label>
+          <input type="text" id="new-med-name" class="form-control" required placeholder="e.g. Amlodipine">
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Dosage:</label>
+            <input type="text" id="new-med-dosage" class="form-control" required placeholder="e.g. 5 mg">
+          </div>
+          <div class="form-group">
+            <label>Form:</label>
+            <select id="new-med-form" class="form-control">
+              <option value="Tablet">Tablet</option>
+              <option value="Capsule">Capsule</option>
+              <option value="Syrup">Syrup</option>
+              <option value="Injection">Injection</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Frequency:</label>
+            <input type="text" id="new-med-frequency" class="form-control" required placeholder="e.g. Once daily">
+          </div>
+          <div class="form-group">
+            <label>Timing Slot(s):</label>
+            <input type="text" id="new-med-timing" class="form-control" required placeholder="e.g. 08:00 or 08:00,20:00">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Food Relation:</label>
+            <select id="new-med-food" class="form-control">
+              <option value="After Food">After Food</option>
+              <option value="Before Food">Before Food</option>
+              <option value="With Food">With Food</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Initial Stock (Units):</label>
+            <input type="number" id="new-med-stock" class="form-control" required value="30">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Instructions:</label>
+          <input type="text" id="new-med-instructions" class="form-control" placeholder="e.g. Take with warm water in morning">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('add-medication-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Medication</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Upload Medical Document Modal -->
+<div class="modal-overlay" id="upload-doc-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">Upload Clinical Record</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('upload-doc-modal')">✕</button>
+    </div>
+    <form onsubmit="submitUploadDocument(event)">
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Document Title:</label>
+          <input type="text" id="upload-doc-title" class="form-control" required placeholder="e.g. Fasting Lipid Profile 2026">
+        </div>
+        <div class="form-group">
+          <label>Record Type:</label>
+          <select id="upload-doc-type" class="form-control">
+            <option value="prescription">Prescription</option>
+            <option value="blood_test">Blood / Lab Report</option>
+            <option value="ecg">ECG / Cardiac Scan</option>
+            <option value="radiology">X-Ray / MRI / Radiology</option>
+            <option value="discharge_summary">Discharge Summary</option>
+            <option value="general">Other Medical Document</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Select File (PDF, Image, or Text):</label>
+          <input type="file" id="upload-doc-file" class="form-control" required accept=".pdf,.png,.jpg,.jpeg,.txt,.doc,.docx">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('upload-doc-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Upload & Audit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Caregiver Task Modal -->
+<div class="modal-overlay" id="add-task-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">Assign Caregiver Task</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('add-task-modal')">✕</button>
+    </div>
+    <form onsubmit="submitAddTask(event)">
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Task Description:</label>
+          <input type="text" id="new-task-title" class="form-control" required placeholder="e.g. Buy Atorvastatin refill from Apollo Pharmacy">
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Due Date:</label>
+            <input type="date" id="new-task-due" class="form-control" required value="2026-11-20">
+          </div>
+          <div class="form-group">
+            <label>Priority:</label>
+            <select id="new-task-priority" class="form-control">
+              <option value="High">High</option>
+              <option value="Urgent">Urgent</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Assigned Caregiver:</label>
+          <select id="new-task-assigned" class="form-control">
+            <option value="1">Priya Sharma (Daughter - Primary)</option>
+            <option value="2">Rahul Sharma (Son)</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('add-task-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Assign Task</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Add Care Journal Modal -->
+<div class="modal-overlay" id="add-journal-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">Write Care Journal Observation</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('add-journal-modal')">✕</button>
+    </div>
+    <form onsubmit="submitAddJournal(event)">
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Observation / Daily Note:</label>
+          <textarea id="new-journal-text" class="form-control" rows="4" required placeholder="Record how mother felt today, meal intake, mobility or sleep notes..."></textarea>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Vitals Observed (Optional):</label>
+            <input type="text" id="new-journal-vitals" class="form-control" placeholder="e.g. BP: 120/80, Sugar: 110">
+          </div>
+          <div class="form-group">
+            <label>Mood / Demeanor:</label>
+            <select id="new-journal-mood" class="form-control">
+              <option value="Cheerful">Cheerful / Happy</option>
+              <option value="Relaxed">Relaxed / Normal</option>
+              <option value="Tired">Tired / Resting</option>
+              <option value="Mild Pain">Mild Joint Pain</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('add-journal-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Post Note</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Restock Medication Modal -->
+<div class="modal-overlay" id="update-stock-modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 class="modal-title">Refill Medicine Stock</h3>
+      <button style="border:none; background:none; font-size:20px; cursor:pointer;" onclick="closeModal('update-stock-modal')">✕</button>
+    </div>
+    <form onsubmit="submitRestock(event)">
+      <div class="modal-body">
+        <input type="hidden" id="restock-med-id">
+        <p style="font-size:15px; margin-bottom:12px;">Adding 30-day supply refill to active inventory.</p>
+        <div class="form-group">
+          <label>New Total Stock (Units):</label>
+          <input type="number" id="restock-units" class="form-control" required value="30">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeModal('update-stock-modal')">Cancel</button>
+        <button type="submit" class="btn btn-primary">Confirm Refill</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast Notifications Container -->
+<div id="toast-container"></div>
+
+<!-- Embedded Interactive Controller with Fallback for Direct File Launch -->
+<script src="static/js/app.js"></script>
+<script>
+  // Fallback direct-file mock loader if opened directly via file:// instead of http://
+  if (window.location.protocol === 'file:') {
+    console.info('Running in standalone file mode. Enabling offline client state...');
+    
+    // Inject pre-rendered mock state if fetch API is blocked on local file protocol
+    window.addEventListener('DOMContentLoaded', () => {
+      const mockState = {
+        appointments: [
+          { id: 1, appointment_date: new Date().toISOString().split('T')[0], appointment_time: '10:00', doctor_name: 'Dr. Ramesh Sharma', specialty: 'Cardiologist', hospital_clinic: 'Apollo Hospitals', location: 'Bannerghatta Road', purpose: 'Quarterly Cardiac Evaluation & BP Review', status: 'scheduled', caretaker_name: 'Priya Sharma (Daughter)', suggested_departure_time: '09:05' },
+          { id: 2, appointment_date: '2026-11-20', appointment_time: '11:30', doctor_name: 'Dr. Ananya Iyer', specialty: 'Neurologist & Geriatrician', hospital_clinic: 'Manipal Hospital', location: 'Old Airport Road', purpose: 'Memory & Mobility Routine Review', status: 'scheduled', caretaker_name: 'Priya Sharma (Daughter)', suggested_departure_time: '10:30' },
+          { id: 3, appointment_date: '2026-11-25', appointment_time: '15:00', doctor_name: 'Dr. Vikram Reddy', specialty: 'Orthopedic Surgeon', hospital_clinic: 'Fortis Hospital', location: 'Cunningham Road', purpose: 'Right Knee Joint Review', status: 'scheduled', caretaker_name: 'Rahul Sharma (Son)', suggested_departure_time: '14:05' }
+        ],
+        today_reminders: [
+          { id: 1, med_name: 'Telmisartan', dosage: '40 mg', reminder_time: '08:00', status: 'acknowledged', acknowledged_at: '2026-11-15 08:05:00', food_relation: 'After Food' },
+          { id: 2, med_name: 'Metformin', dosage: '500 mg', reminder_time: '08:30', status: 'acknowledged', acknowledged_at: '2026-11-15 08:35:00', food_relation: 'After Food' },
+          { id: 3, med_name: 'Calcium + Vitamin D3', dosage: '500 mg + 250 IU', reminder_time: '13:00', status: 'pending', food_relation: 'With Food' },
+          { id: 4, med_name: 'Atorvastatin', dosage: '10 mg', reminder_time: '21:00', status: 'pending', food_relation: 'After Food' }
+        ],
+        medications: [
+          { id: 1, name: 'Telmisartan', dosage: '40 mg', form: 'Tablet', timing_slots: '08:00', food_relation: 'After Food', current_stock: 24, unit: 'tablets', days_supply_remaining: 24, refill_needed: false },
+          { id: 2, name: 'Metformin', dosage: '500 mg', form: 'Tablet', timing_slots: '08:30,20:30', food_relation: 'After Food', current_stock: 18, unit: 'tablets', days_supply_remaining: 9, refill_needed: false },
+          { id: 3, name: 'Atorvastatin', dosage: '10 mg', form: 'Tablet', timing_slots: '21:00', food_relation: 'After Food', current_stock: 4, unit: 'tablets', days_supply_remaining: 4, refill_needed: true },
+          { id: 4, name: 'Calcium + Vitamin D3', dosage: '500 mg', form: 'Tablet', timing_slots: '13:00', food_relation: 'With Food', current_stock: 15, unit: 'tablets', days_supply_remaining: 15, refill_needed: false }
+        ],
+        documents: [
+          { id: 1, title: '12-Lead Resting ECG Report', doc_type: 'ecg', upload_date: '2026-11-12', extracted_text: 'Normal sinus rhythm. Heart rate 72 bpm. PR interval 160ms.' },
+          { id: 2, title: 'HbA1c & Fasting Glucose Profile', doc_type: 'blood_test', upload_date: '2026-11-10', extracted_text: 'HbA1c: 6.8%. Fasting Blood Glucose: 110 mg/dL.' },
+          { id: 3, title: 'Bilateral Knee Standing X-Ray', doc_type: 'radiology', upload_date: '2026-11-05', extracted_text: 'Mild-to-moderate medial compartment joint space narrowing in right knee.' }
+        ],
+        doctors: [
+          { id: 1, name: 'Dr. Ramesh Sharma', specialty: 'Cardiologist', hospital_clinic: 'Apollo Hospitals', location: 'Bannerghatta Road', consultation_fee: 1000.0, bio: 'Senior Consultant Interventional Cardiologist with 24 years experience.' },
+          { id: 2, name: 'Dr. Ananya Iyer', specialty: 'Neurologist & Geriatrician', hospital_clinic: 'Manipal Hospital', location: 'Old Airport Road', consultation_fee: 900.0, bio: 'Specialist in geriatric memory care and neurological wellness.' },
+          { id: 3, name: 'Dr. Vikram Reddy', specialty: 'Orthopedic Surgeon', hospital_clinic: 'Fortis Hospital', location: 'Cunningham Road', consultation_fee: 850.0, bio: 'Chief Orthopedic Surgeon specializing in geriatric mobility.' }
+        ],
+        caretakers: [
+          { id: 1, name: 'Priya Sharma', relationship: 'Daughter', priority_order: 1, is_primary: 1, user_phone: '+91 98450 44556' },
+          { id: 2, name: 'Rahul Sharma', relationship: 'Son', priority_order: 2, is_primary: 0, user_phone: '+91 98450 77889' }
+        ],
+        tasks: [
+          { id: 1, title: 'Accompany Mother to Apollo Cardiology Consultation', due_date: '2026-11-15', priority: 'High', status: 'in_progress', assigned_to_name: 'Priya' },
+          { id: 2, title: 'Order 30-day Refill for Atorvastatin 10mg', due_date: '2026-11-16', priority: 'Urgent', status: 'pending', assigned_to_name: 'Priya' }
+        ],
+        journal: [
+          { author_name: 'Priya Sharma', author_role: 'Caretaker', entry_date: '2026-11-15', entry_text: 'Mother was in cheerful spirits today. Enjoyed morning idli breakfast.', vitals_summary: 'BP: 122/78, Sugar: 110', mood: 'Cheerful' }
+        ],
+        notifications: [
+          { id: 1, category: 'appointment', priority: 'urgent', title: 'Cardiologist Visit Today at 10:00 AM', message: 'Appointment with Dr. Ramesh Sharma at Apollo Hospitals today at 10:00 AM. Priya is accompanying you.', is_read: 0, is_acknowledged: 0, created_at: '2026-11-15 07:30' },
+          { id: 2, category: 'medication', priority: 'high', title: 'Refill Required: Atorvastatin 10 mg', message: 'Notice: Atorvastatin has only 4 tablets remaining (~4 days of supply). Please re-order soon.', is_read: 0, is_acknowledged: 0, created_at: '2026-11-15 08:00' }
+        ],
+        timeline: [
+          { icon: '🩺', badge: 'Doctor Visit', color: '#0d9488', title: 'Quarterly Cardiology Consultation', description: 'BP controlled at 122/78 mmHg. Normal sinus rhythm.', event_date: '2026-11-15', author_or_doctor: 'Dr. Ramesh Sharma' },
+          { icon: '📄', badge: 'Diagnostic Report', color: '#0284c7', title: 'Comprehensive Metabolic & Lipid Panel', description: 'Fasting glucose 110 mg/dL, HbA1c 6.8%, Total Cholesterol 180 mg/dL.', event_date: '2026-11-14', author_or_doctor: 'Metropolis Pathology' },
+          { icon: '💊', badge: 'Medication Event', color: '#15803d', title: 'Atorvastatin Stock Monitored', description: 'Stock dropped to 4 units. System flagged automated reminder for caretaker.', event_date: '2026-11-15', author_or_doctor: 'Catalyst Care Engine' }
+        ],
+        refill_forecast: [
+          { name: 'Atorvastatin', dosage: '10 mg', current_stock: 4, days_supply: 4, refill_needed: true, estimated_runout_date: '19 Nov 2026', badge_color: '#dc2626' },
+          { name: 'Metformin', dosage: '500 mg', current_stock: 18, days_supply: 9, refill_needed: false, estimated_runout_date: '24 Nov 2026', badge_color: '#15803d' }
+        ],
+        daily_briefing: 'Good morning Lakshmi ji! You have a Cardiologist appointment with Dr. Ramesh Sharma at 10:00 AM today at Apollo Hospitals. Priya Sharma will accompany you.',
+        weekly_summary: { summary_text: 'You have 3 appointments scheduled in the next 7 days for mother.' },
+        health_trend: { latest_score: 92.5 }
+      };
+
+      // Call renderers with standalone data
+      renderHomeDashboard(mockState);
+      renderElderlyDashboard(mockState);
+      renderCaretakerDashboard(mockState);
+      renderAppointments(mockState.appointments);
+      renderMedications(mockState.medications, mockState.today_reminders);
+      renderDocuments(mockState.documents);
+      renderDoctors(mockState.doctors);
+      renderCoordination(mockState.caretakers, mockState.tasks, mockState.journal);
+      renderNotifications(mockState.notifications);
+      renderTimeline(mockState.timeline);
+      renderTravel(mockState.appointments);
+
+      // Render the overall health graph
+      const healthData = {
+        has_data: true,
+        data_points: [
+          { report_name: 'Post-Diwali Checkup', date: 'Jun 15', health_score: 68.5, systolic_bp: 142, glucose: 148 },
+          { report_name: 'Monthly Routine', date: 'Jul 15', health_score: 73.0, systolic_bp: 138, glucose: 136 },
+          { report_name: 'Quarterly Panel', date: 'Aug 15', health_score: 79.2, systolic_bp: 132, glucose: 128 },
+          { report_name: 'Mid-Quarter Vitals', date: 'Sep 15', health_score: 85.0, systolic_bp: 128, glucose: 120 },
+          { report_name: 'Geriatric Review', date: 'Oct 15', health_score: 89.4, systolic_bp: 124, glucose: 115 },
+          { report_name: 'Latest Vitals', date: 'Nov 15', health_score: 92.5, systolic_bp: 122, glucose: 110 }
+        ],
+        latest_score: 92.5,
+        trend_direction: 'Improving (Positive Recovery)',
+        trend_color: '#15803d',
+        summary_text: 'Overall health index has moved from 68.5% to 92.5% (+24.0% net change). Routine stabilization and consistent medication adherence are yielding positive health outcomes.'
+      };
+
+      renderHealthScoreCanvasGraph(healthData);
+      renderVitalsMetricsSummary(healthData);
+    });
+  }
+</script>
+</body>
+</html>
